@@ -1,0 +1,22 @@
+{
+  "albums": [
+    {
+      "name": "Test Album",
+      "year": 2024,
+      "description": "Test Description",
+      "photos": [],
+      "createdAt": "2025-05-11T10:08:12.423Z",
+      "owner": "admin"
+    }
+  ],
+  "notes": [
+    {
+      "id": "1746957449854",
+      "title": "Erline",
+      "year": "2020",
+      "content": "egSESEG",
+      "createdAt": "2025-05-11T09:57:29.854Z",
+      "owner": "admin"
+    }
+  ]
+}

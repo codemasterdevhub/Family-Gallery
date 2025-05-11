@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Album</title>
+    <link rel="stylesheet" href="categories.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="top-nav">
+            <div class="nav-buttons">
+                <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Login</a>
+            </div>
+            <div class="nav-actions">
+                <button class="add-note-btn" id="addNoteBtn"><i class="fas fa-sticky-note"></i> New Note</button>
+                <button class="add-album-btn" id="addAlbumBtn"><i class="fas fa-plus"></i> New Album</button>
+            </div>
+        </nav>
+
+        <div class="filter-container">
+            <div class="filter-section">
+                <h2>Filter by Album</h2>
+                <div class="album-filters" id="albumFilters">
+                    <button class="filter-btn active" data-album="all">All Albums</button>
+                    <!-- Dynamic album buttons will be added here -->
+                </div>
+            </div>
+        </div>
+
+        <div class="content-tabs">
+            <button class="tab-btn active" data-tab="albums">Albums</button>
+            <button class="tab-btn" data-tab="notes">Notes</button>
+        </div>
+
+        <div class="gallery-container" id="albumsTab">
+            <div class="gallery" id="gallery">
+                <!-- Dynamic gallery items will be added here -->
+            </div>
+        </div>
+
+        <div class="notes-container" id="notesTab" style="display: none;">
+            <div class="notes-grid" id="notesGrid">
+                <!-- Dynamic notes will be added here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Album Creation Modal -->
+    <div class="modal" id="albumModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create New Album</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="albumForm">
+                <div class="form-group">
+                    <label for="albumName">Album Name</label>
+                    <input type="text" id="albumName" required placeholder="Enter album name">
+                </div>
+                <div class="form-group">
+                    <label for="albumYear">Year</label>
+                    <select id="albumYear" required>
+                        <option value="2030">2030</option>
+                        <option value="2029">2029</option>
+                        <option value="2028">2028</option>
+                        <option value="2027">2027</option>
+                        <option value="2026">2026</option>
+                        <option value="2025">2025</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                        <option value="2019">2019</option>
+                        <option value="2018">2018</option>
+                        <option value="2017">2017</option>
+                        <option value="2016">2016</option>
+                        <option value="2015">2015</option>
+                        <option value="2014">2014</option>
+                        <option value="2013">2013</option>
+                        <option value="2012">2012</option>
+                        <option value="2011">2011</option>
+                        <option value="2010">2010</option>
+                        <option value="2009">2009</option>
+                        <option value="2008">2008</option>
+                        <option value="2007">2007</option>
+                        <option value="2006">2006</option>
+                        <option value="2005">2005</option>
+                        <option value="2004">2004</option>
+                        <option value="2003">2003</option>
+                        <option value="2002">2002</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="albumDescription">Description (Optional)</label>
+                    <textarea id="albumDescription" placeholder="Enter album description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="albumPhotos">Add Photos/Videos</label>
+                    <div class="photo-upload-container">
+                        <input type="file" id="albumPhotos" multiple accept="image/*,video/mp4" class="photo-input">
+                        <div class="upload-area" id="uploadArea">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Drag & Drop files here or click to browse</p>
+                            <span class="upload-hint">Supports JPG, PNG, GIF, MP4 (no size limit)</span>
+                        </div>
+                        <div class="photo-preview" id="photoPreview"></div>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="save-btn">Create Album</button>
+                    <button type="button" class="cancel-btn">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Photo View Modal -->
+    <div class="modal" id="photoModal">
+        <div class="modal-content photo-viewer">
+            <div class="modal-header">
+                <h2 id="photoTitle"></h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="photo-container">
+                <div class="photo-loading"></div>
+                <img id="fullPhoto" src="" alt="Full size photo">
+                <div class="photo-info">
+                    <div class="photo-title" id="photoInfoTitle"></div>
+                    <div class="photo-description" id="photoInfoDescription"></div>
+                </div>
+            </div>
+            <div class="photo-controls">
+                <button class="control-btn" id="prevPhoto"><i class="fas fa-chevron-left"></i></button>
+                <button class="control-btn" id="nextPhoto"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Album Grid Preview Modal -->
+    <div class="modal" id="albumPreviewModal">
+        <div class="modal-content album-preview-modal-content">
+            <div class="modal-header">
+                <h2 id="albumPreviewTitle"></h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="album-preview-info">
+                <span id="albumPreviewYear"></span>
+                <span id="albumPreviewDescription"></span>
+            </div>
+            <div class="album-preview-grid" id="albumPreviewGrid"></div>
+        </div>
+    </div>
+
+    <!-- Note Creation Modal -->
+    <div class="modal" id="noteModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create New Note</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="noteForm">
+                <div class="form-group">
+                    <label for="noteTitle">Title</label>
+                    <input type="text" id="noteTitle" required placeholder="Enter note title">
+                </div>
+                <div class="form-group">
+                    <label for="noteYear">Year</label>
+                    <select id="noteYear" required>
+                        <option value="2030">2030</option>
+                        <option value="2029">2029</option>
+                        <option value="2028">2028</option>
+                        <option value="2027">2027</option>
+                        <option value="2026">2026</option>
+                        <option value="2025">2025</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                        <option value="2019">2019</option>
+                        <option value="2018">2018</option>
+                        <option value="2017">2017</option>
+                        <option value="2016">2016</option>
+                        <option value="2015">2015</option>
+                        <option value="2014">2014</option>
+                        <option value="2013">2013</option>
+                        <option value="2012">2012</option>
+                        <option value="2011">2011</option>
+                        <option value="2010">2010</option>
+                        <option value="2009">2009</option>
+                        <option value="2008">2008</option>
+                        <option value="2007">2007</option>
+                        <option value="2006">2006</option>
+                        <option value="2005">2005</option>
+                        <option value="2004">2004</option>
+                        <option value="2003">2003</option>
+                        <option value="2002">2002</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="noteContent">Content</label>
+                    <textarea id="noteContent" required placeholder="Write your note here..." rows="6"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="save-btn">Save Note</button>
+                    <button type="button" class="cancel-btn">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Note View Modal -->
+    <div class="modal" id="noteViewModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="noteViewTitle"></h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="note-view-content">
+                <div class="note-view-info">
+                    <span id="noteViewYear"></span>
+                    <span id="noteViewDate"></span>
+                </div>
+                <div class="note-view-text" id="noteViewText"></div>
+            </div>
+            <div class="note-view-actions">
+                <button class="edit-note-btn" id="editNoteBtn">
+                    <i class="fas fa-edit"></i> Edit
+                </button>
+                <button class="delete-note-btn" id="deleteNoteBtn">
+                    <i class="fas fa-trash"></i> Delete
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="categories.js"></script>
+</body>
+</html> 

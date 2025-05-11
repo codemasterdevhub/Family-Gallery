@@ -1,0 +1,424 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(45deg, #6b48ff, #ff4848);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+}
+
+.login-container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    animation: slideUp 0.5s ease-out;
+}
+
+.form-container {
+    padding: 40px;
+}
+
+h1 {
+    color: #333;
+    font-size: 2em;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.subtitle {
+    color: #666;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-group i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 15px 15px 15px 45px;
+    border: none;
+    background: #f5f5f5;
+    border-radius: 10px;
+    font-size: 1em;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+    outline: none;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(107, 72, 255, 0.2);
+}
+
+/* Password group specific styles */
+.password-group {
+    display: flex;
+    align-items: center;
+}
+
+.password-group input {
+    padding-right: 50px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    color: #666;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+.toggle-password:hover {
+    background: rgba(107, 72, 255, 0.1);
+    color: #6b48ff;
+}
+
+.toggle-password:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.toggle-password i {
+    position: static;
+    transform: none;
+    font-size: 1.1em;
+    transition: transform 0.3s ease;
+}
+
+.toggle-password.active i {
+    transform: rotate(180deg);
+}
+
+.remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.remember-forgot label {
+    color: #666;
+    cursor: pointer;
+}
+
+.forgot-link {
+    color: #6b48ff;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(45deg, #6b48ff, #ff4848);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s ease, background 0.5s ease;
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+}
+
+.social-login {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.social-login p {
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    background: #6b48ff;
+    color: white;
+    transform: translateY(-2px);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .form-container {
+        padding: 20px;
+    }
+}
+
+.error-message {
+    margin-top: 15px;
+    padding: 10px 15px;
+    background: rgba(255, 72, 72, 0.1);
+    border-radius: 8px;
+    color: #ff4848;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    animation: slideDown 0.3s ease-out;
+}
+
+.error-message i {
+    font-size: 1.1em;
+}
+
+.login-btn.success {
+    background: linear-gradient(45deg, #4CAF50, #45a049) !important;
+}
+
+.login-btn.error {
+    background: linear-gradient(45deg, #ff4848, #ff6b6b) !important;
+}
+
+/* Signup form matches login form style */
+#signupFormContainer {
+    padding: 40px;
+    display: block;
+}
+
+.switch-auth {
+    text-align: center;
+    margin-top: 20px;
+    color: #666;
+    font-size: 0.98em;
+}
+.switch-auth a {
+    color: #6b48ff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 5px;
+    transition: color 0.2s;
+}
+.switch-auth a:hover {
+    color: #ff4848;
+}
+
+/* Real-time validation feedback */
+.input-group input:invalid {
+    border: 1.5px solid #ff4848;
+    background: #fff0f0;
+}
+.input-group input:valid {
+    border: 1.5px solid #4CAF50;
+    background: #f5fff5;
+}
+
+/* Error message for signup */
+.signup-error-message {
+    margin-top: 15px;
+    padding: 10px 15px;
+    background: rgba(255, 72, 72, 0.1);
+    border-radius: 8px;
+    color: #ff4848;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    animation: slideDown 0.3s ease-out;
+}
+.signup-error-message i {
+    font-size: 1.1em;
+}
+
+/* Modern Forgot Password Modal Styles */
+#forgotPasswordModal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+#forgotPasswordModal.active {
+    display: flex;
+    opacity: 1;
+}
+#forgotPasswordModal .modal-content {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    padding: 32px 32px 24px 32px;
+    min-width: 320px;
+    max-width: 400px;
+    width: 100%;
+    animation: scaleIn 0.4s cubic-bezier(0.4,0,0.2,1);
+    position: relative;
+}
+#forgotPasswordModal .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    border-bottom: 3px solid #6b48ff;
+    padding-bottom: 10px;
+}
+#forgotPasswordModal .modal-header h2 {
+    font-size: 1.3em;
+    color: #333;
+    font-weight: 600;
+}
+#forgotPasswordModal .close-modal {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+#forgotPasswordModal .close-modal:hover {
+    color: #ff4848;
+}
+#forgotPasswordModal .form-group {
+    margin-bottom: 18px;
+}
+#forgotPasswordModal input[type="email"],
+#forgotPasswordModal input[type="text"],
+#forgotPasswordModal input[type="password"] {
+    width: 100%;
+    padding: 13px 15px;
+    border: 1.5px solid #eee;
+    border-radius: 8px;
+    font-size: 1em;
+    margin-top: 6px;
+    margin-bottom: 2px;
+    background: #f8f8f8;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+#forgotPasswordModal input:focus {
+    border: 1.5px solid #6b48ff;
+    outline: none;
+    background: #fff;
+    box-shadow: 0 0 8px rgba(107,72,255,0.08);
+}
+#forgotPasswordModal .login-btn {
+    width: 100%;
+    margin-top: 8px;
+    padding: 13px;
+    border-radius: 8px;
+    font-size: 1em;
+    background: linear-gradient(45deg, #6b48ff, #ff4848);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+#forgotPasswordModal .login-btn:disabled {
+    background: #bbb;
+    cursor: not-allowed;
+}
+#forgotPasswordModal .login-btn .fa-spinner {
+    margin-right: 8px;
+}
+#forgotPasswordModal #forgotMessage {
+    min-height: 24px;
+    text-align: center;
+    font-size: 0.98em;
+}
+/* Stepper indicator */
+.forgot-stepper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+.forgot-step {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #eee;
+    color: #888;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95em;
+    font-weight: 600;
+    transition: background 0.3s, color 0.3s;
+}
+.forgot-step.active {
+    background: #6b48ff;
+    color: #fff;
+}
+.forgot-step.done {
+    background: #4CAF50;
+    color: #fff;
+}
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.92); }
+    to { opacity: 1; transform: scale(1); }
+} 

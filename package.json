@@ -1,0 +1,8 @@
+{
+  "name": "album",
+  "version": "1.0.0",
+  "description": "Album with client-side storage",
+  "scripts": {
+    "start": "echo 'No server needed - open index.html in your browser'"
+  }
+} 
